@@ -1,6 +1,6 @@
 # build plugin lowcode
 
-> 编译 vue 自定义组件的 编译插件，基于 `@alib/build-scripts`
+> 编译 vue 自定义组件的 编译插件，基于 `@alib/build-scripts`,使用方式查看 [example](https://github.com/KNXCloud/build-plugin-lowcode/tree/main/example)
 
 ## 运行 example
 

@@ -5,5 +5,5 @@
     "vue": "var window.Vue",
     "@knx/kui": "var window.Kui"
   },
-  "plugins": ["../"]
+  "plugins": ["@knxcloud/build-plugin-lowcode"]
 }
