@@ -1,0 +1,9 @@
+{
+  "publicPath": "/",
+  "library": "KnxLcUi",
+  "externals": {
+    "vue": "var window.Vue",
+    "@knx/kui": "var window.Kui"
+  },
+  "plugins": ["../"]
+}

@@ -1,0 +1,27 @@
+{
+  "name": "@knxcloud/example-component",
+  "version": "1.0.0",
+  "description": "A component library based on Naive",
+  "files": [
+    "dist/"
+  ],
+  "main": "dist/view.js",
+  "scripts": {
+    "start": "build-scripts start",
+    "build": "build-scripts build"
+  },
+  "dependencies": {
+    "naive-ui": "^2.30.6"
+  },
+  "peerDependencies": {
+    "vue": ">=3.2"
+  },
+  "devDependencies": {
+    "@alib/build-scripts": "^0.1.32",
+    "@alilc/lowcode-types": "^1.0.10",
+    "@babel/core": "^7.18.5",
+    "@vue/tsconfig": "^0.1.3",
+    "typescript": "~4.7.4",
+    "vue": "^3.2.37"
+  }
+}

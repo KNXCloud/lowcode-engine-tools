@@ -1,0 +1,32 @@
+{
+  "name": "@knxcloud/build-plugin-lowcode",
+  "version": "1.0.0",
+  "main": "./src/index.js",
+  "files": [
+    "src"
+  ],
+  "dependencies": {
+    "@vue/babel-preset-app": "^5.0.6",
+    "build-scripts-config": "^3.0.3",
+    "chokidar": "^3.5.3",
+    "fast-glob": "^3.2.11",
+    "handlebars": "^4.7.7",
+    "is-wsl": "^2.2.0",
+    "lodash": "^4.17.21",
+    "vue-loader": "^17.0.0",
+    "webpack-virtual-modules": "^0.4.3"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.18.5",
+    "eslint": "^8.18.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "prettier": "^2.7.1",
+    "vue": "^3.2.37",
+    "webpack": "^4.46.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  }
+}
