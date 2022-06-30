@@ -3,7 +3,7 @@
   "library": "KnxLcUi",
   "externals": {
     "vue": "var window.Vue",
-    "@knx/kui": "var window.Kui"
+    "naive-ui": "var window.naive"
   },
   "plugins": ["@knxcloud/build-plugin-lowcode"]
 }
