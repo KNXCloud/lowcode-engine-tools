@@ -1,0 +1,21 @@
+{
+  "devDependencies": {
+    "lint-staged": "^13.0.3",
+    "vue-tsc": "^0.40.13"
+  },
+  "gitHooks": {
+    "pre-commit": "NODE_ENV=production npx lint-staged && npx vue-tsc --noEmit"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,vue}": [
+      "prettier --write",
+      "eslint --fix"
+    ],
+    "*.json": [
+      "prettier --write"
+    ],
+    "*.{less,scss,css,vue}": [
+      "stylelint --fix"
+    ]
+  }
+}

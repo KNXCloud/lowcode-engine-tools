@@ -1,9 +1,0 @@
-{
-  "publicPath": "/",
-  "library": "KnxLcUi",
-  "externals": {
-    "vue": "var window.Vue",
-    "naive-ui": "var window.naive"
-  },
-  "plugins": ["@knxcloud/build-plugin-lowcode"]
-}

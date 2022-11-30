@@ -1,0 +1,8 @@
+{
+  "devDependencies": {
+    "less": "^4.1.3",
+    "less-loader": "^11.0.0",
+    "stylelint-config-recommended-less": "^1.0.4",
+    "stylelint-less": "^1.0.6"
+  }
+}

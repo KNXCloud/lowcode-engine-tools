@@ -1,0 +1,30 @@
+{
+  "name": "@knxcloud/vue-cli-plugin-lowcode",
+  "version": "1.0.0",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "prepack": "pnpm build"
+  },
+  "dependencies": {
+    "fs-extra": "^10.1.0",
+    "fast-glob": "^3.2.12",
+    "webpack-merge": "^5.8.0"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^9.0.13",
+    "@vue/cli-service": "^5.0.8"
+  },
+  "peerDependencies": {
+    "webpack": ">=5"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[css]": {
+    "editor.defaultFormatter": null
+  },
+  "[less]": {
+    "editor.defaultFormatter": null
+  },
+  "[scss]": {
+    "editor.defaultFormatter": null
+  },
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true,
+    "source.fixAll.stylelint": true
+  },
+  "files.associations": {
+    "*.svg": "html",
+    "*.env*": "ini",
+    "api-*.json": "jsonc"
+  },
+  "prettier.enable": true,
+  "eslint.validate": ["vue", "ts", "tsx"],
+  "volar.autoCompleteRefs": false,
+  "volar.codeLens.scriptSetupTools": false,
+  "volar.codeLens.references": false,
+  "volar.completion.autoImportComponent": false,
+  "volar.completion.preferredTagNameCase": "kebab",
+  "i18n-ally.localesPaths": ["node_modules/.i18n"],
+  "i18n-ally.autoDetection": false,
+  "i18n-ally.enabledFrameworks": ["vue"],
+  "i18n-ally.keystyle": "flat",
+  "stylelint.validate": ["css", "less", "scss", "postcss", "vue"]
+}

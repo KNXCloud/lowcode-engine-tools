@@ -1,0 +1,31 @@
+{
+  "name": "@knxcloud/create-lowcode",
+  "main": "./dist/index.js",
+  "version": "1.0.12",
+  "bin": {
+    "create-lowcode": "./dist/index.js"
+  },
+  "files": [
+    "dist",
+    "template"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "prepack": "pnpm build"
+  },
+  "dependencies": {
+    "@types/semver": "^7.3.12",
+    "axios": "^0.27.2",
+    "kolorist": "^1.6.0",
+    "minimist": "^1.2.6",
+    "prompts": "^2.4.2",
+    "semver": "^7.3.8"
+  },
+  "devDependencies": {
+    "@types/prompts": "^2.4.1"
+  },
+  "publishConfig": {
+    "registry": "http://49.234.156.39:8081/repository/npm-release",
+    "access": "public"
+  }
+}
