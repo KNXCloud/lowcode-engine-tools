@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "release": "pnpm publish -r --filter @knx/* --no-git-checks --tag=latest"
+    "release": "pnpm publish -r --filter @knxcloud/* --no-git-checks --tag=latest"
   },
   "repository": {
     "type": "git",

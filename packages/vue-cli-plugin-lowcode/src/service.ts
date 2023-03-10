@@ -85,6 +85,9 @@ const servicePlugin: ServicePlugin = (api, options) => {
     });
     config.output.libraryTarget('umd');
 
+    config.module.rule('svg').set('type', 'asset/inline').delete('generator');
+    config.module.rule('images').set('type', 'asset/inline').delete('generator');
+
     const rawConfig = api.resolveWebpackConfig(config);
 
     rawConfig.externals = [
@@ -95,6 +98,7 @@ const servicePlugin: ServicePlugin = (api, options) => {
         vue: 'var Vue',
         '@knxcloud/lowcode-vue-renderer': 'var window.LCVueRenderer',
         '@knxcloud/lowcode-vue-simulator-renderer': 'var window.LCVueSimulatorRenderer',
+        ...externals,
       },
     ].filter(nonNull);
 
@@ -130,7 +134,7 @@ const servicePlugin: ServicePlugin = (api, options) => {
       const { log, logWithSpinner, stopSpinner } = require('@vue/cli-shared-utils');
 
       log();
-      const mode = api.service.mode;
+      const mode = process.env.BUILD_ENV || api.service.mode;
       logWithSpinner(`Building for ${mode} as library umd...`);
 
       const entries = {
@@ -144,7 +148,7 @@ const servicePlugin: ServicePlugin = (api, options) => {
             new LowCodeAssetsWebpackPlugin({
               ...assetsConfig,
               npmInfo,
-              mode: api.service.mode,
+              mode,
               library: libName,
               filename: 'assets.json',
               metaFileName: 'meta.js',
@@ -157,7 +161,7 @@ const servicePlugin: ServicePlugin = (api, options) => {
             new LowCodeAssetsWebpackPlugin({
               ...assetsConfig,
               npmInfo,
-              mode: api.service.mode,
+              mode,
               library: libName,
               filename: 'assets.min.json',
               metaFileName: 'meta.min.js',
@@ -246,6 +250,9 @@ const servicePlugin: ServicePlugin = (api, options) => {
         ]);
 
         chain.output.filename('[name].js').chunkFilename('[name].js');
+
+        chain.module.rule('svg').set('type', 'asset/inline').delete('generator');
+        chain.module.rule('images').set('type', 'asset/inline').delete('generator');
       });
       return serve.fn(args, rawArgs);
     }

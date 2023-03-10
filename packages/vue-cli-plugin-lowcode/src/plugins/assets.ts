@@ -40,17 +40,18 @@ export class LowCodeAssetsWebpackPlugin {
       builtinAssets = {},
     } = this.options;
 
-    const resolveUrl = (file: string) => {
-      return joinUrl(
+    const currentBaseUrl = typeof baseUrl === 'string' ? baseUrl : baseUrl[mode];
+    const origin = new URL(currentBaseUrl).origin;
+    const resolveUrl = (file: string) =>
+      joinUrl(
         currentBaseUrl
-          .replace('{name}', npmInfo.package ?? '')
-          .replace('{version}', npmInfo.version ?? ''),
+          .replace(/{name}/g, npmInfo.package ?? '')
+          .replace(/{origin}/g, origin)
+          .replace(/{version}/g, npmInfo.version ?? ''),
         relativePath,
         file
       );
-    };
 
-    const currentBaseUrl = typeof baseUrl === 'string' ? baseUrl : baseUrl[mode];
     compiler.hooks.thisCompilation.tap('lowcode-assets-webpack-plugin', (compilation) => {
       compilation.hooks.processAssets.tap(
         {
@@ -87,12 +88,14 @@ export class LowCodeAssetsWebpackPlugin {
               categoryList: categories,
             },
           };
-          compilation.emitAsset(
-            filename,
-            new sources.RawSource(
-              isProd ? JSON.stringify(assets) : JSON.stringify(assets, undefined, 2)
-            )
-          );
+          const source = isProd
+            ? JSON.stringify(assets)
+            : JSON.stringify(assets, undefined, 2);
+          const transformedSource = source
+            .replace(/{name}/g, npmInfo.package ?? '')
+            .replace(/{origin}/g, origin)
+            .replace(/{version}/g, npmInfo.version ?? '');
+          compilation.emitAsset(filename, new sources.RawSource(transformedSource));
         }
       );
     });
