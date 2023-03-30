@@ -34,10 +34,7 @@ const servicePlugin: ServicePlugin = (api, options) => {
 
   const assetsConfig = Object.assign(
     {
-      baseUrl: {
-        production: 'https://unpkg.com/{name}@{version}',
-        development: 'http://127.0.0.1:9000',
-      },
+      baseUrl: 'https://unpkg.com/{name}@{version}',
       groups: [],
       categories: [],
       builtinAssets: {},
@@ -246,6 +243,8 @@ const servicePlugin: ServicePlugin = (api, options) => {
             filename: 'assets.json',
             files: ['index.js'],
             metaFileName: 'meta.js',
+            isProd: false,
+            localBaseUrl: `http://${devServer.host}:${devServer.port}`,
           },
         ]);
 

@@ -12,6 +12,7 @@ export interface LowCodeAssetsWebpackPluginOptions extends LowCodeAssetsConfig {
   relativePath?: string;
   files?: string[];
   isProd?: boolean;
+  localBaseUrl?: string;
 }
 
 function joinUrl(base: string, ...paths: string[]): string {
@@ -20,6 +21,11 @@ function joinUrl(base: string, ...paths: string[]): string {
     return origin + join(pathname, ...paths);
   }
   return join(base, ...paths);
+}
+
+function getOrigin(url: string): string {
+  const matched = url && url.match(/(https?:)?\/\/([^/]+)/);
+  return matched ? matched[0] : '';
 }
 
 export class LowCodeAssetsWebpackPlugin {
@@ -37,14 +43,15 @@ export class LowCodeAssetsWebpackPlugin {
       isProd,
       groups = [],
       categories = [],
+      localBaseUrl,
       builtinAssets = {},
     } = this.options;
 
     const currentBaseUrl = typeof baseUrl === 'string' ? baseUrl : baseUrl[mode];
-    const origin = new URL(currentBaseUrl).origin;
+    const origin = getOrigin(currentBaseUrl);
     const resolveUrl = (file: string) =>
       joinUrl(
-        currentBaseUrl
+        (localBaseUrl || currentBaseUrl)
           .replace(/{name}/g, npmInfo.package ?? '')
           .replace(/{origin}/g, origin)
           .replace(/{version}/g, npmInfo.version ?? ''),
