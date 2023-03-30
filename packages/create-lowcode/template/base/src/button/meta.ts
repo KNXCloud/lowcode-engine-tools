@@ -1,6 +1,6 @@
-import type { ComponentMetadata } from '@alilc/lowcode-types';
+import type { IPublicTypeComponentMetadata } from '@alilc/lowcode-types';
 
-export default <ComponentMetadata>{
+export default <IPublicTypeComponentMetadata>{
   componentName: 'XButton',
   npm: {
     destructuring: true,
