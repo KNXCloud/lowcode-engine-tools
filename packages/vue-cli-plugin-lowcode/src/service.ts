@@ -45,9 +45,9 @@ const servicePlugin: ServicePlugin = (api, options) => {
   const libName =
     library ||
     (api.service.pkg.name
-      ? api.service.pkg.name.replace(/[/@](\w)/g, (_: string, $1: string) =>
-          $1.toUpperCase()
-        )
+      ? api.service.pkg.name
+          .replace(/[/@-](\w)/g, (_: string, $1: string) => $1.toUpperCase())
+          .replace(/^\w/, (s: string) => s.toUpperCase())
       : basename(entry).replace(/\.(jsx?|vue)$/, ''));
   const tempDir = api.resolve('node_modules/.lowcode-builder');
   const metaEntryName = '~entry-meta';
