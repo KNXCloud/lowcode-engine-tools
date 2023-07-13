@@ -50,16 +50,18 @@ const npmInfo = ${JSON.stringify(npmInfo)};
 const components = [${Object.keys(imports).join(',')}];
 components.forEach((item) => {
   if (!item.npm) {
+    const { componentName } = item;
+    const names = componentName.split('.');
+    const [exportName, subName] = names;
     item.npm = {
-      ...npmInfo,
-      componentName: item.componentName,
-    }
-  } else {
-    item.npm = {
-      ...npmInfo,
-      ...item.npm,
-    }
+      exportName: exportName,
+      main: '',
+      destructuring: true,
+      subName: names.length > 1 ? componentName.slice(componentName.indexOf('.') + 1) : subName,
+    };
   }
+  item.npm = { ...npmInfo, ...(item.npm || {}) };
+  return item;
 })
 ${
   !globalName
