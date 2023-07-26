@@ -30,7 +30,7 @@ export async function generateMetaEntry(
   npmInfo: LowCodeNpmInfo,
   globalName?: string
 ): Promise<string> {
-  const files = await glob('**/meta.{js,jsx,ts,tsx}', {
+  const files = await glob(['**/meta.{js,jsx,ts,tsx}', '**/*.meta.{js,jsx,ts,tsx}'], {
     cwd: slash(context),
     absolute: true,
     onlyFiles: true,
@@ -47,8 +47,10 @@ export async function generateMetaEntry(
 
   const code = `${importCode}
 const npmInfo = ${JSON.stringify(npmInfo)};
-const components = [${Object.keys(imports).join(',')}];
-components.forEach((item) => {
+const metaList = [${Object.keys(imports).join(',')}];
+const components = [];
+
+const pushComponentMeta = (item) => {
   if (!item.npm) {
     const { componentName } = item;
     const names = componentName.split('.');
@@ -61,7 +63,17 @@ components.forEach((item) => {
     };
   }
   item.npm = { ...npmInfo, ...(item.npm || {}) };
-  return item;
+  components.push(item);
+}
+
+metaList.forEach((item) => {
+  if (Array.isArray(item)) {
+    item.forEach((subItem) => {
+      pushComponentMeta(subItem);
+    });
+  } else {
+    pushComponentMeta(item);
+  }
 })
 ${
   !globalName

@@ -9,6 +9,7 @@ export interface LowCodePluginOptions {
 
 export interface LowCodeAssetsConfig {
   baseUrl?: string | Record<string, string>;
+  localBaseUrl?: string;
   groups?: string[];
   categories?: string[];
   builtinAssets?: BuiltinAssets;
