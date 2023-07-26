@@ -236,6 +236,7 @@ const servicePlugin: ServicePlugin = (api, options) => {
         chain.devServer.allowedHosts.add('all');
         chain.plugin('lowcode-assets').use(LowCodeAssetsWebpackPlugin, [
           {
+            localBaseUrl: `http://${devServer.host}:${devServer.port}`,
             ...assetsConfig,
             npmInfo,
             mode: api.service.mode,
@@ -244,7 +245,6 @@ const servicePlugin: ServicePlugin = (api, options) => {
             files: ['index.js'],
             metaFileName: 'meta.js',
             isProd: false,
-            localBaseUrl: `http://${devServer.host}:${devServer.port}`,
           },
         ]);
 
