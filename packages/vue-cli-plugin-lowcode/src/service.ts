@@ -92,7 +92,7 @@ const servicePlugin: ServicePlugin = (api, options) => {
         ? rawConfig.externals
         : [rawConfig.externals]),
       {
-        vue: 'var Vue',
+        vue: 'var window.Vue',
         '@knxcloud/lowcode-vue-renderer': 'var window.LCVueRenderer',
         '@knxcloud/lowcode-vue-simulator-renderer': 'var window.LCVueSimulatorRenderer',
         ...externals,
@@ -223,7 +223,7 @@ const servicePlugin: ServicePlugin = (api, options) => {
         });
         chain.externals({
           ...externals,
-          vue: 'var Vue',
+          vue: 'var window.Vue',
           '@knxcloud/lowcode-vue-renderer': 'var window.LCVueRenderer',
           '@knxcloud/lowcode-vue-simulator-renderer': 'var window.LCVueSimulatorRenderer',
         });
