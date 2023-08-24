@@ -3,6 +3,7 @@ import type { Stats } from 'webpack';
 import type { LowCodeAssetsConfig, LowCodeNpmInfo, LowCodePluginOptions } from './define';
 import fs from 'fs-extra';
 import merge from 'webpack-merge';
+import _ from 'lodash';
 import { basename, relative, dirname } from 'path';
 import { formatStats, generateMetaEntry, generateViewEntry } from './utils';
 import { LowCodeAssetsWebpackPlugin } from './plugins/assets';
@@ -143,7 +144,7 @@ const servicePlugin: ServicePlugin = (api, options) => {
         merge(getConfig('index', entries.view, libName), {
           plugins: [
             new LowCodeAssetsWebpackPlugin({
-              ...assetsConfig,
+              ..._.omit(assetsConfig, 'localBaseUrl'),
               npmInfo,
               mode,
               library: libName,
@@ -156,7 +157,7 @@ const servicePlugin: ServicePlugin = (api, options) => {
         merge(getConfig('index', entries.view, libName, 'min'), {
           plugins: [
             new LowCodeAssetsWebpackPlugin({
-              ...assetsConfig,
+              ..._.omit(assetsConfig, 'localBaseUrl'),
               npmInfo,
               mode,
               library: libName,
